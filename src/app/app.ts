@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ThemeService } from './core/services/theme.service';
 import { ThemeToggleComponent } from './shared/components/theme-toggle/theme-toggle.component';
 
+declare const AOS: any;
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -20,5 +22,14 @@ export class App implements OnInit {
 
   ngOnInit(): void {
     this.currentTheme = this.themeService.getCurrentTheme();
+
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 700,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 80
+      });
+    }
   }
 }
